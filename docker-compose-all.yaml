@@ -260,7 +260,7 @@ services:
     depends_on:
       - elasticsearch
     profiles:
-      - dev
+      - kibana
      
 
   modeler-websockets:

@@ -16,9 +16,9 @@ This repository contains links to Camunda Platform 8 resources, the offical rele
 
 > :information_source: The Docker required is 20.10.16+
 
-To stand-up a complete Camunda Platform 8 Self-Managed environment locally the [docker-compose.yaml](docker-compose.yaml) file in this repository can be used.
+To stand-up a complete Camunda Platform 8 Self-Managed environment locally the [docker-compose-all.yaml](docker-compose-all.yaml) file in this repository can be used.
 
-The full enviornment contains these components:
+The full environment contains these components:
 - Zeebe
 - Operate
 - Tasklist
@@ -27,11 +27,12 @@ The full enviornment contains these components:
 - Identity
 - Elasticsearch
 - KeyCloak
+- WebModeler
 
 Clone this repo and issue the following command to start your environment:
 
 ```
-docker-compose up -d
+docker-compose -f docker-compose-all.yaml up -d
 ```
 
 Wait a few minutes for the environment to start up and settle down. Monitor the logs, especially the Keycloak container log, to ensure the components have started.
@@ -42,6 +43,7 @@ Now you can navigate to the different web apps and log in with the user `demo` a
 - Optimize: [http://localhost:8083](http://localhost:8083)
 - Identity: [http://localhost:8084](http://localhost:8084)
 - Elasticsearch: [http://localhost:9200](http://localhost:9200)
+- WebModeler: [http://localhost:8070](http://localhost:8070)
 
 KeyCloak is used to manage users. Here you can log in with the user `admin` and password `admin`
 - KeyCloak: [http://localhost:18080/auth/](http://localhost:18080/auth/)
@@ -51,7 +53,7 @@ The workflow engine Zeebe is available using gRPC at `localhost:26500`.
 To tear down the whole environment run the following command
 
 ```
-docker-compose down -v
+docker-compose -f docker-compose-all.yaml down -v
 ```
 
 If Optimize, Identity, and Keycloak are not needed you can use the [docker-compose-core.yaml](docker-compose-core.yaml) instead which does not include these components:
